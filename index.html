@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>gildiya-task3</title>
+</head>
+<style>
+	.container {
+		width: 100%;
+	}
+	.row {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 150px;
+		border: 1px solid #000000;
+	}
+	.item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 50px;
+		height: 50px;
+		border-top: 1px solid #000000;
+		border-left: 1px solid #000000;
+		border-bottom: 1px solid #000000;
+	}
+	.item:last-child {
+		border-right: 1px solid #000000;
+	}
+	[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+	.slider {
+		width: 30px;
+		height: 30px;
+		background: blue;
+		cursor: move;
+	}
+
+	.button {
+		padding: 5px 15px;
+		font-size: 14px;
+		font-family: sans-serif;
+		cursor: pointer;
+	}
+
+</style>
+<body>
+	
+<div class="container">
+	<div class="row" id="row">
+		<div class="item" data-set="1"><div class="slider" id="dragtarget" draggable="true"></div></div>
+		<div class="item" data-set="2"></div>
+		<div class="item" data-set="3"></div>
+		<div class="item" data-set="4"></div>
+		<div class="item" data-set="5"></div>
+		<div class="item" data-set="6"></div>
+		<div class="item" data-set="7"></div>
+		<div class="item" data-set="8"></div>
+		<div class="item" data-set="9"></div>
+		<div class="item" data-set="10"></div>
+		<div class="item" data-set="11"></div>
+		<div class="item" data-set="12"></div>
+		<div class="item" data-set="13"></div>
+		<div class="item" data-set="14"></div>
+		<div class="item" data-set="15"></div>
+	</div>
+	<div class="row">
+		<button class="button" id="start">start</button>
+	</div>
+</div>
+
+
+
+
+
+
+<script>
+document.addEventListener("dragstart", function(event) {
+	event.dataTransfer.setData("html", event.target.id);
+});
+
+document.addEventListener("dragover", function(event) {
+		event.preventDefault();
+	});
+
+document.addEventListener("drop", function(event) {
+	event.preventDefault();
+
+	if (event.target.classList.contains("item")) {
+		let dataData = event.dataTransfer.getData("html");
+		event.target.appendChild(document.getElementById(dataData));
+		let sec= event.originalTarget.dataset.set;
+		console.log(sec + ' сек');
+	}
+});
+
+let starts = document.querySelector('#start');
+
+starts.addEventListener('click', function() {
+		
+})
+</script>
+</body>
+</html>
