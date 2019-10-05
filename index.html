@@ -57,6 +57,9 @@
 <body>
 	
 <div class="container">
+	<div class="row">
+		<button class="button" id="start">start</button>
+	</div>
 	<div class="row" id="row">
 		<div class="item" data-set="1"><div class="slider" id="dragtarget" draggable="true"></div></div>
 		<div class="item" data-set="2"></div>
@@ -73,9 +76,6 @@
 		<div class="item" data-set="13"></div>
 		<div class="item" data-set="14"></div>
 		<div class="item" data-set="15"></div>
-	</div>
-	<div class="row">
-		<button class="button" id="start">start</button>
 	</div>
 </div>
 
@@ -103,11 +103,16 @@ document.addEventListener("drop", function(event) {
 		console.log(sec + ' сек');
 	}
 });
-
+let item = document.querySelectorAll('.item');
+console.log(item)
 let starts = document.querySelector('#start');
-
+let row = document.querySelector('#row');
+console.log(row);
 starts.addEventListener('click', function() {
-		
+	//  let newRow = document.createElement('div');
+	//  newRow.className = "row";
+	//  newRow.innerHTML = row.innerHTML;
+	//  row.parentElement.appendChild(newRow);
 })
 </script>
 </body>
