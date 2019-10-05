@@ -61,21 +61,21 @@
 		<button class="button" id="start">start</button>
 	</div>
 	<div class="row" id="row">
-		<div class="item" data-set="1"><div class="slider" id="dragtarget" draggable="true"></div></div>
-		<div class="item" data-set="2"></div>
-		<div class="item" data-set="3"></div>
-		<div class="item" data-set="4"></div>
-		<div class="item" data-set="5"></div>
-		<div class="item" data-set="6"></div>
-		<div class="item" data-set="7"></div>
-		<div class="item" data-set="8"></div>
-		<div class="item" data-set="9"></div>
-		<div class="item" data-set="10"></div>
-		<div class="item" data-set="11"></div>
-		<div class="item" data-set="12"></div>
-		<div class="item" data-set="13"></div>
-		<div class="item" data-set="14"></div>
-		<div class="item" data-set="15"></div>
+		<div class="item drop" data-set="1"><div class="slider" id="dragtarget" draggable="true"></div></div>
+		<div class="item drop" data-set="2"></div>
+		<div class="item drop" data-set="3"></div>
+		<div class="item drop" data-set="4"></div>
+		<div class="item drop" data-set="5"></div>
+		<div class="item drop" data-set="6"></div>
+		<div class="item drop" data-set="7"></div>
+		<div class="item drop" data-set="8"></div>
+		<div class="item drop" data-set="9"></div>
+		<div class="item drop" data-set="10"></div>
+		<div class="item drop" data-set="11"></div>
+		<div class="item drop" data-set="12"></div>
+		<div class="item drop" data-set="13"></div>
+		<div class="item drop" data-set="14"></div>
+		<div class="item drop" data-set="15"></div>
 	</div>
 </div>
 
@@ -96,7 +96,7 @@ document.addEventListener("dragover", function(event) {
 document.addEventListener("drop", function(event) {
 	event.preventDefault();
 
-	if (event.target.classList.contains("item")) {
+	if (event.target.classList.contains("drop")) {
 		let dataData = event.dataTransfer.getData("html");
 		event.target.appendChild(document.getElementById(dataData));
 		let sec= event.originalTarget.dataset.set;
@@ -109,10 +109,11 @@ let starts = document.querySelector('#start');
 let row = document.querySelector('#row');
 // console.log(row);
 starts.addEventListener('click', function() {
-	//  let newRow = document.createElement('div');
-	//  newRow.className = "row";
-	//  newRow.innerHTML = row.innerHTML;
-	//  row.parentElement.appendChild(newRow);
+	 let newRow = document.createElement('div');
+	 newRow.className = "row";
+	 newRow.innerHTML = row.innerHTML;
+	 row.parentElement.appendChild(newRow);
+	 
 })
 </script>
 </body>
