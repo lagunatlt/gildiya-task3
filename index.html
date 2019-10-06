@@ -70,7 +70,9 @@
 		font-family: sans-serif;
 		cursor: pointer;
 	}
-
+	.hide {
+		display: none;
+	}
 </style>
 <body>
 	
@@ -122,30 +124,45 @@ document.addEventListener("drop", function(event) {
 	}
 });
 let item = document.querySelectorAll('.item');
-// console.log(item)
 let starts = document.querySelector('#start');
 let row = document.querySelector('#row');
-// console.log(row);
+
 starts.addEventListener('click', function() {
-	//  starts.setAttribute.disabled;
+	console.log(starts)
+	 starts.setAttribute('disabled', '');
+	 starts.style.cursor = 'default';
+
 	 let newRow = document.createElement('div');
 	 newRow.className = "row";
-	//  newRow.innerHTML = row.innerHTML;
 	 row.parentElement.appendChild(newRow);
+
 	 for (let i = 0; i < item.length; i++) {
 		let newDiv = document.createElement('div');
 			newDiv.className = "item-div";
 			newRow.appendChild(newDiv);
-			// console.log(newDiv);
 		let newSlide = document.createElement('div');
 			newSlide.className = "slide-div";
+			newSlide.style.display = 'none';
 			newDiv.appendChild(newSlide);
-			// console.log(newSlide);
 	 };
-	 let newSlide = document.querySelectorAll('.slide-div')
-	 for (let i = 1; i < newSlide.length; i++) {
-		newSlide[i].style.display = "none";
-	 }
+
+		let newSlide = document.querySelectorAll('.slide-div');
+		
+			const delay = x => new Promise(res => setTimeout(res, x));
+			(async () => {
+				for (let j = 0; j < newSlide.length; j++) {
+					if (newSlide[j].style.display == 'none') {
+						newSlide[j].style.display = 'block';
+					}
+					if (newSlide[Math.abs(j - 1)].style.display == 'block') {
+						newSlide[Math.abs(j - 1)].style.display = 'none';
+					}
+					await delay(1000);
+				}
+		})();
+			
+
+	 
 
 })
 </script>
