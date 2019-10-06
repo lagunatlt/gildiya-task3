@@ -28,6 +28,19 @@
 		border-left: 1px solid #000000;
 		border-bottom: 1px solid #000000;
 	}
+	.item-div {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 50px;
+		height: 50px;
+		border-top: 1px solid #000000;
+		border-left: 1px solid #000000;
+		border-bottom: 1px solid #000000;
+	}
+	.item-div:last-child {
+		border-right: 1px solid #000000;
+	}
 	.item:last-child {
 		border-right: 1px solid #000000;
 	}
@@ -45,6 +58,11 @@
 		background: blue;
 		cursor: move;
 	}
+	.slide-div {
+		width: 30px;
+		height: 30px;
+		background: blue;
+	}
 
 	.button {
 		padding: 5px 15px;
@@ -61,21 +79,21 @@
 		<button class="button" id="start">start</button>
 	</div>
 	<div class="row" id="row">
-		<div class="item drop" data-set="1"><div class="slider" id="dragtarget" draggable="true"></div></div>
-		<div class="item drop" data-set="2"></div>
-		<div class="item drop" data-set="3"></div>
-		<div class="item drop" data-set="4"></div>
-		<div class="item drop" data-set="5"></div>
-		<div class="item drop" data-set="6"></div>
-		<div class="item drop" data-set="7"></div>
-		<div class="item drop" data-set="8"></div>
-		<div class="item drop" data-set="9"></div>
-		<div class="item drop" data-set="10"></div>
-		<div class="item drop" data-set="11"></div>
-		<div class="item drop" data-set="12"></div>
-		<div class="item drop" data-set="13"></div>
-		<div class="item drop" data-set="14"></div>
-		<div class="item drop" data-set="15"></div>
+		<div class="item drop" data-set="00:01"><div class="slider" id="dragtarget" draggable="true"></div></div>
+		<div class="item drop" data-set="00:02"></div>
+		<div class="item drop" data-set="00:03"></div>
+		<div class="item drop" data-set="00:04"></div>
+		<div class="item drop" data-set="00:05"></div>
+		<div class="item drop" data-set="00:06"></div>
+		<div class="item drop" data-set="00:07"></div>
+		<div class="item drop" data-set="00:08"></div>
+		<div class="item drop" data-set="00:09"></div>
+		<div class="item drop" data-set="00:10"></div>
+		<div class="item drop" data-set="00:11"></div>
+		<div class="item drop" data-set="00:12"></div>
+		<div class="item drop" data-set="00:13"></div>
+		<div class="item drop" data-set="00:14"></div>
+		<div class="item drop" data-set="00:15"></div>
 	</div>
 </div>
 
@@ -109,11 +127,26 @@ let starts = document.querySelector('#start');
 let row = document.querySelector('#row');
 // console.log(row);
 starts.addEventListener('click', function() {
+	//  starts.setAttribute.disabled;
 	 let newRow = document.createElement('div');
 	 newRow.className = "row";
-	 newRow.innerHTML = row.innerHTML;
+	//  newRow.innerHTML = row.innerHTML;
 	 row.parentElement.appendChild(newRow);
-	 
+	 for (let i = 0; i < item.length; i++) {
+		let newDiv = document.createElement('div');
+			newDiv.className = "item-div";
+			newRow.appendChild(newDiv);
+			// console.log(newDiv);
+		let newSlide = document.createElement('div');
+			newSlide.className = "slide-div";
+			newDiv.appendChild(newSlide);
+			// console.log(newSlide);
+	 };
+	 let newSlide = document.querySelectorAll('.slide-div')
+	 for (let i = 1; i < newSlide.length; i++) {
+		newSlide[i].style.display = "none";
+	 }
+
 })
 </script>
 </body>
