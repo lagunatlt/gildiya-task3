@@ -105,15 +105,9 @@
 
 
 <script>
-document.addEventListener("dragstart", function(event) {
-	event.dataTransfer.setData("html", event.target.id);
-});
-
-document.addEventListener("dragover", function(event) {
-		event.preventDefault();
-	});
-
-document.addEventListener("drop", function(event) {
+document.addEventListener("dragstart", event => event.dataTransfer.setData("html", event.target.id));
+document.addEventListener("dragover", event => event.preventDefault());
+document.addEventListener("drop", event => {
 	event.preventDefault();
 
 	if (event.target.classList.contains("drop")) {
@@ -123,11 +117,13 @@ document.addEventListener("drop", function(event) {
 		console.log(sec + ' сек');
 	}
 });
+
 let item = document.querySelectorAll('.item');
+item.forEach = [].forEach;
 let starts = document.querySelector('#start');
 let row = document.querySelector('#row');
 
-starts.addEventListener('click', function() {
+starts.addEventListener('click', () => {
 	 starts.setAttribute('disabled', '');
 	 starts.style.cursor = 'default';
 
@@ -135,21 +131,22 @@ starts.addEventListener('click', function() {
 	 newRow.className = "row";
 	 row.parentElement.appendChild(newRow);
 
-	 for (let i = 0; i < item.length; i++) {
-		let newDiv = document.createElement('div');
+		item.forEach(item => {
+			let newDiv = document.createElement('div');
 			newDiv.className = "item-div";
 			newRow.appendChild(newDiv);
-		let newSlide = document.createElement('div');
+
+			let newSlide = document.createElement('div');
 			newSlide.className = "slide-div";
 			newSlide.style.display = 'none';
 			newDiv.appendChild(newSlide);
-	 };
+		});
 
 		let newSlide = document.querySelectorAll('.slide-div');
 		
 			const delay = x => new Promise(res => setTimeout(res, x));
 			(async () => {
-				for (let j = 0; j < newSlide.length; j++) {
+					for (let j = 0; j < newSlide.length; j++) {
 					if (newSlide[j].style.display == 'none') {
 						newSlide[j].style.display = 'block';
 					}
@@ -159,9 +156,6 @@ starts.addEventListener('click', function() {
 					await delay(1000);
 				}
 		})();
-			
-
-	 
 
 })
 </script>
